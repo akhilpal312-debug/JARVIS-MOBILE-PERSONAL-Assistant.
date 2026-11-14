@@ -37,10 +37,16 @@ jobs:
       - name: Install Android SDK packages
         run: |
           set -euo pipefail
-          sdk_root="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
+          sdk_root="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
           sdkmanager="${sdk_root}/cmdline-tools/latest/bin/sdkmanager"
-          yes | "${sdkmanager}" --licenses > /dev/null
+          echo "SDK root: ${sdk_root}"
+          echo "sdkmanager: ${sdkmanager}"
+          # `yes` is killed by SIGPIPE once sdkmanager exits, so isolate the pipeline
+          # (pipefail would otherwise fail the step) and accept the licences best-effort.
+          { yes | "${sdkmanager}" --licenses > /dev/null 2>&1; } || true
           "${sdkmanager}" --install "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          test -d "${sdk_root}/platforms/android-35"
+          test -d "${sdk_root}/build-tools/35.0.0"
           {
             echo "ANDROID_SDK_ROOT=${sdk_root}"
             echo "ANDROID_HOME=${sdk_root}"
