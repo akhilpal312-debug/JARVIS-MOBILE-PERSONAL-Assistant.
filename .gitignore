@@ -1,0 +1,24 @@
+# Build output
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/keystore/*.jks
+android/keystore/keystore.properties
+
+# Built release artifacts (too large for git; see README/docs/TEST_REPORT.md)
+artifacts/
+
+# Backend
+server/node_modules/
+server/.env
+server/.env.local
+.vercel/
+
+# Working downloads (model staging, toolchain)
+.staging/
+
+# OS noise
+.DS_Store
+*.log

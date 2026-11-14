@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The deployment token and personal memories are device-bound secrets: they
+     are excluded from cloud backup and device-to-device transfer. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="database" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="database" path="." />
+    </device-transfer>
+</data-extraction-rules>

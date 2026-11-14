@@ -1,0 +1,15 @@
+{
+  "name": "jarvis-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Jarvis personal assistant backend for Vercel (zero runtime dependencies)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "start": "node scripts/dev-server.js",
+    "test": "node --test test/"
+  }
+}
